@@ -2,6 +2,21 @@ body {
     background-color: #78BE41;
 }
 
+.panel {
+    width: 400px;
+    margin: auto;
+}
+
+.piece {
+    background-color: rgba(0, 0, 0, 0.11);
+    padding: 5px;
+    margin: 5px 0;
+}
+
+.repertoire {
+    margin: 20px 0;
+}
+
 h1 {
     font-family: sans-serif;
 }

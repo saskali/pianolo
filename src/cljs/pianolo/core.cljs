@@ -17,12 +17,14 @@
               :value (:input @app-state)
               :on-change #(swap! app-state assoc :input (-> % .-target .-value))
               :on-key-down #(if (= 13 (.-which %))
-                              (swap! app-state update-in [:pieces] conj {:title (-> % .-target .-value)}))}]]))
+                              (do
+                                (swap! app-state update-in [:pieces] conj {:title (-> % .-target .-value)})
+                                (swap! app-state assoc :input "")))}]]))
 
 (defn repertoire [app-state]
   [:div.repertoire
    (for [piece (:pieces @app-state)]
-     [:div (:title piece)])])
+     [:div.piece (:title piece)])])
 
 (defn panel [app-state]
   [:div.panel
