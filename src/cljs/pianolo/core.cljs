@@ -3,10 +3,22 @@
 
 (enable-console-print!)
 
-(defonce app-state (atom {:text "Hello Chestnut!"}))
+(defonce app-state (atom {:input ""}))
 
-(defn greeting []
-  [:h1 (:text @app-state)])
+(defn title []
+  [:div.title
+   [:h1 "welcome to pianolo"]])
+
+(defn input-field []
+  [:div.input-field
+   [:input {:type "field"
+            :value (:input @app-state)
+            :on-change #(swap! app-state assoc :input (-> % .-target .-value))}]])
+
+(defn panel []
+  [:div.panel
+   [title]
+   [input-field]])
 
 (defn render []
-  (reagent/render [greeting] (js/document.getElementById "app")))
+  (reagent/render [panel] (js/document.getElementById "app")))
