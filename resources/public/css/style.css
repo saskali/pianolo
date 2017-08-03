@@ -60,6 +60,10 @@ body {
     fill: currentColor;
 }
 
+.icon-circle.inactive {
+    opacity: 0.3;
+}
+
 h1 {
     font-family: sans-serif;
 }

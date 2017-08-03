@@ -33,12 +33,18 @@
        [:div.icon-circle
         {:type "button"
          :on-click (fn [] (swap! level-cur dec))}
+        [svg/CircleLeftIcon]]
+       [:div.icon-circle.inactive
+        {:type "button"}
         [svg/CircleLeftIcon]])
      [:div.level @level-cur]
      (if (< @level-cur 10)
        [:div.icon-circle
         {:type "button"
          :on-click (fn [] (swap! level-cur inc))}
+        [svg/CircleRightIcon]]
+       [:div.icon-circle.inactive
+        {:type "button"}
         [svg/CircleRightIcon]])]))
 
 (defn repertoire-item [rep-state idx]
