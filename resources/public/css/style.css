@@ -7,14 +7,57 @@ body {
     margin: auto;
 }
 
+.input-field input {
+    padding: 8px;
+    width: 95%;
+}
+
 .piece {
     background-color: rgba(0, 0, 0, 0.11);
-    padding: 5px;
-    margin: 5px 0;
+    padding: 12px;
+    margin: 10px 0;
+}
+
+.skill {
+    width: 70px;
+    display: inline-block;
+    font-size: 1.2em;
+}
+
+.level {
+    font-size: 1em;
+    display: inline-block;
+
 }
 
 .repertoire {
     margin: 20px 0;
+    font-family: monospace;
+}
+
+.name {
+    width: 250px;
+    font-size: 1.25em;
+    display: inline-block;
+    padding: 5px 5px 5px 5px;
+}
+
+.icon-remove {
+    float: right;
+    display: inline-block;
+    padding: 5px;
+    background: transparent;
+    border: none;
+}
+
+.icon-circle {
+    display: inline-block;
+    width: 0.9em;
+    height: 0.9em;
+    padding: 5px;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
 }
 
 h1 {
