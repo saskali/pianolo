@@ -16,7 +16,9 @@
                  [com.stuartsierra/component "0.3.2"]
                  [org.danielsz/system "0.4.0"]
                  [org.clojure/tools.namespace "0.2.11"]
-                 [reagent "0.6.0"]]
+                 [binaryage/devtools "0.8.2"]
+                 [reagent "0.6.0"]
+                 [re-frame "0.8.0"]]
 
   :plugins [[lein-cljsbuild "1.1.5"]
             [lein-environ "1.1.0"]]
