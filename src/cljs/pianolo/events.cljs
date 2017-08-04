@@ -6,13 +6,16 @@
   (fn  [_ _]
     {:pieces [{:id (random-uuid)
                :title "Toccata"
-               :level 9}
+               :level 9
+               :playing true}
               {:id (random-uuid)
                :title "Pirates"
-               :level 7}
+               :level 7
+               :playing true}
               {:id (random-uuid)
                :title "Moonlight"
-               :level 9}]}))
+               :level 9
+               :playing true}]}))
 
 (reg-event-db
   :save-piece
@@ -37,3 +40,8 @@
   :level-up
   (fn [db [_ idx]]
     (update-in db [:pieces idx :level] inc)))
+
+(reg-event-db
+  :set-playing
+  (fn [db [_ idx]]
+    (update-in db [:pieces idx :playing] not)))

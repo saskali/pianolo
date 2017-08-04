@@ -21,13 +21,11 @@ body {
 .skill {
     width: 70px;
     display: inline-block;
-    font-size: 1.2em;
 }
 
 .level {
     font-size: 1em;
     display: inline-block;
-
 }
 
 .repertoire {
@@ -42,22 +40,30 @@ body {
     padding: 5px 5px 5px 5px;
 }
 
-.icon-remove {
-    float: right;
+.icon {
     display: inline-block;
-    padding: 5px;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+    cursor: pointer;
+}
+
+.icon-remove {
+    display: inline-block;
     background: transparent;
     border: none;
 }
 
 .icon-circle {
-    display: inline-block;
     width: 0.9em;
     height: 0.9em;
     padding: 5px;
-    stroke-width: 0;
-    stroke: currentColor;
-    fill: currentColor;
+}
+
+.icon-playing {
+    padding-right: 10px;
 }
 
 .icon-circle.inactive {

@@ -19,3 +19,10 @@
     (subscribe [:pieces]))
   (fn [pieces [_ piece-id]]
     (:level (nth pieces piece-id))))
+
+(reg-sub
+  :playing
+  (fn [query-v]
+    (subscribe [:pieces]))
+  (fn [pieces [_ piece-id]]
+    (:playing (nth pieces piece-id))))
