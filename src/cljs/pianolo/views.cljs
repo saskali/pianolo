@@ -20,12 +20,32 @@
                                   (dispatch [:save-piece @input])
                                   (reset! input "")))}]])))
 
+(defn skill [idx]
+  (let [level (subscribe [:skill-level idx])]
+    [:div.skill
+      (if (> @level 1)
+        [:div.icon-circle
+         {:type "button"
+          :on-click #(dispatch [:level-down idx])}
+         [svg/CircleLeftIcon]]
+        [:div.icon-circle.inactive
+         {:type "button"}
+         [svg/CircleLeftIcon]])
+      [:div.level @level]
+      (if (< @level 10)
+        [:div.icon-circle
+         {:type "button"
+          :on-click #(dispatch [:level-up idx])}
+         [svg/CircleRightIcon]]
+        [:div.icon-circle.inactive
+         {:type "button"}
+         [svg/CircleRightIcon]])]))
+
 (defn repertoire-item [idx piece]
-  (let [title  (subscribe [:title idx])
-        level  (subscribe [:skill-level idx])]
+  (let [title  (subscribe [:title idx])]
     [:div.piece
      [:div.name @title]
-     ;[skill @level]
+     [skill idx]
      [:div.icon-remove {:type "button"
                         :on-click #(dispatch [:remove-piece idx])}
       [svg/RemoveIcon]]]))

@@ -27,3 +27,13 @@
     (let [pieces (:pieces db)]
       (assoc db :pieces (-> (subvec pieces 0 idx)
                             (into (subvec pieces (inc idx))))))))
+
+(reg-event-db
+  :level-down
+  (fn [db [_ idx]]
+    (update-in db [:pieces idx :level] dec)))
+
+(reg-event-db
+  :level-up
+  (fn [db [_ idx]]
+    (update-in db [:pieces idx :level] inc)))
