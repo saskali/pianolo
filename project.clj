@@ -17,8 +17,9 @@
                  [org.danielsz/system "0.4.0"]
                  [org.clojure/tools.namespace "0.2.11"]
                  [binaryage/devtools "0.8.2"]
-                 [reagent "0.6.0"]
-                 [re-frame "0.8.0"]]
+                 [day8.re-frame/trace "0.1.0"]
+                 [reagent "0.6.0-rc"]
+                 [re-frame "0.9.0"]]
 
   :plugins [[lein-cljsbuild "1.1.5"]
             [lein-environ "1.1.0"]]
@@ -51,7 +52,9 @@
                            :asset-path "js/compiled/out"
                            :output-to "resources/public/js/compiled/pianolo.js"
                            :output-dir "resources/public/js/compiled/out"
-                           :source-map-timestamp true}}
+                           :source-map-timestamp true
+                           :closure-defines      {"re_frame.trace.trace_enabled_QMARK_" true}
+                           :preloads             [day8.re-frame.trace.preload]}}
 
                {:id "test"
                 :source-paths ["src/cljs" "test/cljs" "src/cljc" "test/cljc"]
