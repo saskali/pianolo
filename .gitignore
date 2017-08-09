@@ -1,6 +1,7 @@
 .idea
 *.class
 *.jar
+*.iml
 /.lein-*
 /.nrepl-port
 /.repl
