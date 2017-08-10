@@ -26,7 +26,7 @@
 
   :min-lein-version "2.6.1"
 
-  :source-paths ["src/clj" "src/cljs" "src/cljc"]
+  :source-paths ["src/clj" "src/cljs" "src/cljc" "checkouts/re-frame-trace/src"]
 
   :test-paths ["test/clj" "test/cljc"]
 
@@ -44,7 +44,7 @@
 
   :cljsbuild {:builds
               [{:id "app"
-                :source-paths ["src/cljs" "src/cljc" "dev"]
+                :source-paths ["src/cljs" "src/cljc" "dev" "checkouts/re-frame-trace/src"]
 
                 :figwheel {:on-jsload "pianolo.system/reset"}
 
