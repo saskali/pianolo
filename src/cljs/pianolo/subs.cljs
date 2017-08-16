@@ -11,18 +11,18 @@
   (fn [query-v]
     (subscribe [:pieces]))
   (fn [pieces [_ piece-id]]
-    (:title (nth pieces piece-id))))
+    (:title (get pieces piece-id))))
 
 (reg-sub
   :skill-level
   (fn [query-v]
     (subscribe [:pieces]))
   (fn [pieces [_ piece-id]]
-    (:level (nth pieces piece-id))))
+    (:level (get pieces piece-id))))
 
 (reg-sub
   :playing
   (fn [query-v]
     (subscribe [:pieces]))
   (fn [pieces [_ piece-id]]
-    (:playing (nth pieces piece-id))))
+    (:playing (get pieces piece-id))))

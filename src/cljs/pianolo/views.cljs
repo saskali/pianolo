@@ -26,7 +26,7 @@
       (if (> @level 1)
         [:div.icon.icon-circle
          {:type "button"
-          :on-click #(dispatch [:level-down idx])}
+          :on-click #(dispatch [:level-down id])}
          [svg/CircleLeftIcon]]
         [:div.icon.icon-circle.inactive
          {:type "button"}
@@ -35,34 +35,33 @@
       (if (< @level 10)
         [:div.icon.icon-circle
          {:type "button"
-          :on-click #(dispatch [:level-up idx])}
+          :on-click #(dispatch [:level-up id])}
          [svg/CircleRightIcon]]
         [:div.icon.icon-circle.inactive
          {:type "button"}
          [svg/CircleRightIcon]])]))
 
-(defn repertoire-item [idx piece]
-  (let [title    (subscribe [:title idx])
-        playing  (subscribe [:playing idx])]
+(defn repertoire-item [id piece]
+  (let [title    (subscribe [:title id])
+        playing  (subscribe [:playing id])]
     [:div.piece
      [:div.icon.icon-playing
-      {:on-click #(dispatch [:set-playing idx])}
+      {:on-click #(dispatch [:set-playing id])}
       (if @playing
         [svg/StarEmptyIcon]
         [svg/EyeIcon])]
      [:div.name @title]
-     [skill idx]
+     [skill id]
      [:div.icon-remove {:type "button"
-                        :on-click #(dispatch [:remove-piece idx])}
+                        :on-click #(dispatch [:remove-piece id])}
       [svg/RemoveIcon]]]))
 
 (defn repertoire []
   (let [pieces (subscribe [:pieces])]
-    (fn []
-      [:div.repertoire
-       (map-indexed (fn [idx {id :id}]
-                      ^{:key id} [repertoire-item idx])
-                    @pieces)])))
+    [:div.repertoire
+     (map (fn [[id _]]
+              ^{:key id} [repertoire-item id])
+          @pieces)]))
 
 (defn panel []
   [:div.panel

@@ -4,44 +4,45 @@
 (reg-event-db
   :initialize-db
   (fn  [_ _]
-    {:pieces [{:id (random-uuid)
-               :title "Toccata"
+    {:pieces
+     (reduce (fn [m piece-data]
+               (assoc m (random-uuid) piece-data))
+             {}
+             [{:title "Toccata"
                :level 9
                :playing true}
-              {:id (random-uuid)
-               :title "Pirates"
+              {:title "Pirates"
                :level 7
                :playing true}
-              {:id (random-uuid)
-               :title "Moonlight"
+              {:title "Moonlight"
                :level 9
-               :playing true}]}))
+               :playing true}])
+     :display nil}))
 
 (reg-event-db
   :save-piece
   (fn [db [_ title]]
-    (update db :pieces conj {:id (random-uuid)
-                             :title title
-                             :level 1})))
+    (assoc-in db [:pieces (random-uuid)]
+              {:title title
+               :level 1
+               :playing false})))
 
 (reg-event-db
   :remove-piece
-  (fn [db [_ idx]]
-    (let [pieces (:pieces db)]
-      (assoc db :pieces (-> (subvec pieces 0 idx)
-                            (into (subvec pieces (inc idx))))))))
+  (fn [db [_ id]]
+    (update db :pieces dissoc id)))
 
 (reg-event-db
   :level-down
-  (fn [db [_ idx]]
-    (update-in db [:pieces idx :level] dec)))
+  (fn [db [_ id]]
+    (update-in db [:pieces id :level] dec)))
 
 (reg-event-db
   :level-up
-  (fn [db [_ idx]]
-    (update-in db [:pieces idx :level] inc)))
+  (fn [db [_ id]]
+    (update-in db [:pieces id :level] inc)))
 
 (reg-event-db
   :set-playing
-  (fn [db [_ idx]]
-    (update-in db [:pieces idx :playing] not)))
+  (fn [db [_ id]]
+    (update-in db [:pieces id :playing] not)))
