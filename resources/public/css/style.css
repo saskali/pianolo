@@ -6,8 +6,27 @@ magic-mint:     #acf7c1;
 cocount:        #8f5c38;
  */
 
+/*
+light-blue:     #DFE9F6;
+dark-blue:      #293C8C;
+light-beige:    #FBF7F4;
+beige:          #F1E2D7;
+ */
+
 body {
-    background-color: #94bfbe;
+    color: #293C8C;
+    background-color: #FBF7F4;
+    font-family: monospace;
+}
+
+.header-title {
+    color: black;
+    text-align: center;
+}
+
+.header-title h1 {
+    font-family: unset;
+    font-size: 3em;
 }
 
 .panel {
@@ -22,7 +41,7 @@ body {
 }
 
 .piece {
-    background-color: rgba(0, 0, 0, 0.11);
+    background-color: #F1E2D7;
     padding: 12px;
     margin: 10px 0;
 }
