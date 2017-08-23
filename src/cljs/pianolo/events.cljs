@@ -17,7 +17,7 @@
               {:title "Moonlight"
                :level 9
                :playing true}])
-     :display nil}))
+     :display {}}))
 
 (reg-event-db
   :save-piece

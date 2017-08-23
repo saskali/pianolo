@@ -3,6 +3,8 @@
               [re-frame.core :as re-frame :refer [subscribe dispatch]]
               [pianolo.components.svg :as svg]))
 
+(def <sub (comp deref subscribe))
+
 (defn header-title []
   [:div.header-title
    [:h1 "welcome to pianolo"]])
@@ -20,10 +22,10 @@
                                   (dispatch [:save-piece @input])
                                   (reset! input "")))}]])))
 
-(defn skill [idx]
-  (let [level (subscribe [:skill-level idx])]
+(defn skill [id]
+  (let [level (<sub [:skill-level id])]
     [:div.skill
-      (if (> @level 1)
+      (if (> level 1)
         [:div.icon.icon-circle
          {:type "button"
           :on-click #(dispatch [:level-down id])}
@@ -31,8 +33,8 @@
         [:div.icon.icon-circle.inactive
          {:type "button"}
          [svg/CircleLeftIcon]])
-      [:div.level @level]
-      (if (< @level 10)
+      [:div.level level]
+      (if (< level 10)
         [:div.icon.icon-circle
          {:type "button"
           :on-click #(dispatch [:level-up id])}
@@ -41,27 +43,27 @@
          {:type "button"}
          [svg/CircleRightIcon]])]))
 
-(defn repertoire-item [id piece]
-  (let [title    (subscribe [:title id])
-        playing  (subscribe [:playing id])]
+(defn repertoire-item [id]
+  (let [title   (<sub [:title id])
+        playing (<sub [:playing id])]
     [:div.piece
      [:div.icon.icon-playing
       {:on-click #(dispatch [:set-playing id])}
-      (if @playing
+      (if playing
         [svg/StarEmptyIcon]
         [svg/EyeIcon])]
-     [:div.name @title]
+     [:div.name title]
      [skill id]
      [:div.icon-remove {:type "button"
                         :on-click #(dispatch [:remove-piece id])}
       [svg/RemoveIcon]]]))
 
 (defn repertoire []
-  (let [pieces (subscribe [:pieces])]
+  (let [pieces (<sub [:pieces])]
     [:div.repertoire
      (map (fn [[id _]]
               ^{:key id} [repertoire-item id])
-          @pieces)]))
+          pieces)]))
 
 (defn panel []
   [:div.panel
