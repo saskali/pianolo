@@ -5,6 +5,7 @@
             [pianolo.config :as config]
             [pianolo.views :as views]
             [pianolo.events]
+            [pianolo.routes]
             [pianolo.subs]))
 
 (defn dev-setup []

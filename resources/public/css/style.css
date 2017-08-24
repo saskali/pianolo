@@ -25,7 +25,7 @@ body {
 }
 
 .header-title h1 {
-    font-family: unset;
+    font-family: helvetica;
     font-size: 3em;
 }
 
@@ -100,4 +100,25 @@ body {
 
 h1 {
     font-family: sans-serif;
+}
+
+.showing {
+    list-style: none;
+    display: inline;
+    padding: 5px;
+    letter-spacing: 1.5px;
+}
+
+.showing a {
+    padding: 5px;
+    text-decoration: none;
+}
+
+.selected {
+    border-bottom: 3px solid #293C8C;
+}
+
+.menu {
+    text-align: center;
+    padding-left: 0;
 }

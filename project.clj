@@ -19,7 +19,8 @@
                  [binaryage/devtools "0.8.2"]
                  [day8.re-frame/trace "0.1.0"]
                  [reagent "0.6.0-rc"]
-                 [re-frame "0.9.0"]]
+                 [re-frame "0.9.0"]
+                 [bidi "2.1.2"]]
 
   :plugins [[lein-cljsbuild "1.1.5"]
             [lein-environ "1.1.0"]]

@@ -6,7 +6,8 @@
   (fn  [_ _]
     {:pieces
      (reduce (fn [m piece-data]
-               (assoc m (random-uuid) piece-data))
+               (let [id (random-uuid)]
+                 (assoc m id (assoc piece-data :id id))))
              {}
              [{:title "Toccata"
                :level 9
@@ -17,15 +18,22 @@
               {:title "Moonlight"
                :level 9
                :playing true}])
-     :display {}}))
+     :showing :all}))
+
+(reg-event-db
+  :set-showing
+  (fn [db [_ filter-keyword]]  ;; filter-keyword can be :all, :now or :soon
+    (assoc db :showing filter-keyword)))
 
 (reg-event-db
   :save-piece
   (fn [db [_ title]]
-    (assoc-in db [:pieces (random-uuid)]
-              {:title title
-               :level 1
-               :playing false})))
+    (let [id (random-uuid)]
+      (assoc-in db [:pieces id]
+                {:id id
+                 :level 1
+                 :title title
+                 :playing false}))))
 
 (reg-event-db
   :remove-piece
