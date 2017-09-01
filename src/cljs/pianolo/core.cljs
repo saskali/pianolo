@@ -4,6 +4,7 @@
             [devtools.core :as devtools]
             [pianolo.config :as config]
             [pianolo.views :as views]
+            [pianolo.persistence]
             [pianolo.events]
             [pianolo.routes]
             [pianolo.subs]))
