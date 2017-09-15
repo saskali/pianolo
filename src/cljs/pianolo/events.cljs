@@ -1,27 +1,12 @@
 (ns pianolo.events
-  (:require [re-frame.core :as re-frame :refer [reg-event-db register-handler]]
-            [pianolo.persistence :as localstorage]))
+  (:require [re-frame.core :as re-frame :refer [reg-event-db register-handler reg-event-fx inject-cofx]]
+            [pianolo.db :as db :refer [default-db]]))
 
-(reg-event-db
+(reg-event-fx
   :initialize-db
-  (fn  [_ _]
-    (if (nil? (localstorage/get "app-db"))
-      {:pieces
-         (reduce (fn [m piece-data]
-                   (let [id (random-uuid)]
-                     (assoc m id (assoc piece-data :id id))))
-                 {}
-                 [{:title "Toccata"
-                   :level 9
-                   :playing true}
-                  {:title "Pirates"
-                   :level 7
-                   :playing true}
-                  {:title "Moonlight"
-                   :level 9
-                   :playing true}])
-       :showing :all}
-      (localstorage/get "app-db"))))
+  [(inject-cofx :local-store-pieces)]
+  (fn [{:keys [db local-store-pieces]} _]
+    {:db (update default-db :pieces merge (:pieces local-store-pieces))}))
 
 (reg-event-db
   :set-showing
