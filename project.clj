@@ -16,7 +16,7 @@
                  [com.stuartsierra/component "0.3.2"]
                  [org.danielsz/system "0.4.0"]
                  [org.clojure/tools.namespace "0.2.11"]
-                 [binaryage/devtools "0.8.2"]
+                 [binaryage/devtools "0.9.4"]
                  [day8.re-frame/trace "0.1.0"]
                  [reagent "0.6.0-rc"]
                  [re-frame "0.9.0"]
