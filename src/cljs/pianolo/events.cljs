@@ -1,6 +1,6 @@
 (ns pianolo.events
-  (:require [re-frame.core :as re-frame :refer [reg-event-db register-handler reg-event-fx inject-cofx]]
-            [pianolo.db :as db :refer [default-db]]))
+  (:require [re-frame.core :as re-frame :refer [reg-event-db reg-event-fx inject-cofx]]
+            [pianolo.db :as db :refer [default-db ->local-store]]))
 
 (reg-event-fx
   :initialize-db
@@ -10,11 +10,13 @@
 
 (reg-event-db
   :set-showing
-  (fn [db [_ filter-keyword]]  ;; filter-keyword can be :all, :now or :soon
+  [->local-store]
+  (fn [db [_ filter-keyword]]
     (assoc db :showing filter-keyword)))
 
 (reg-event-db
   :save-piece
+  [->local-store]
   (fn [db [_ title]]
     (let [id (random-uuid)]
       (assoc-in db [:pieces id]
@@ -25,20 +27,24 @@
 
 (reg-event-db
   :remove-piece
+  [->local-store]
   (fn [db [_ id]]
     (update db :pieces dissoc id)))
 
 (reg-event-db
   :level-down
+  [->local-store]
   (fn [db [_ id]]
     (update-in db [:pieces id :level] dec)))
 
 (reg-event-db
   :level-up
+  [->local-store]
   (fn [db [_ id]]
     (update-in db [:pieces id :level] inc)))
 
 (reg-event-db
   :set-playing
+  [->local-store]
   (fn [db [_ id]]
     (update-in db [:pieces id :playing] not)))

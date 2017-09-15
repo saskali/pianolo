@@ -3,8 +3,10 @@
 
 (def ls-key "pieces")
 
-;(defn pieces->local-store [pieces]
-;  (.setItem js/localStorage ls-key (str pieces)))
+(defn pieces->local-store [pieces]
+  (.setItem js/localStorage ls-key (str pieces)))
+
+(def ->local-store (re-frame/after pieces->local-store))
 
 (reg-cofx
   :local-store-pieces
@@ -15,19 +17,6 @@
                                (cljs.reader/read-string))))))
 
 (def default-db
-  {:pieces
-   (reduce (fn [m piece-data]
-             (let [id (random-uuid)]
-               (assoc m id (assoc piece-data :id id))))
-           {}
-           [{:title "Toccata"
-             :level 9
-             :playing true}
-            {:title "Pirates"
-             :level 7
-             :playing true}
-            {:title "Moonlight"
-             :level 9
-             :playing true}])
+  {:pieces {}
    :showing :all})
 
